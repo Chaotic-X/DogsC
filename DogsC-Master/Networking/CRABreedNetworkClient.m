@@ -32,7 +32,7 @@ static NSString * const baseURLString = @"https://dog.ceo/api";
     //https://dog.ceo/api
     NSURL *baseURL = [NSURL URLWithString:baseURLString];
     //https://dog.ceo/api/breeds/list/all
-    NSURL *breedURL = [[[baseURL URLByAppendingPathComponent: @"breeds"] URLByAppendingPathComponent:@"list"] URLByAppendingPathComponent:@"all"];
+    NSURL *breedURL = [[ [baseURL URLByAppendingPathComponent: @"breeds"] URLByAppendingPathComponent:@"list"] URLByAppendingPathComponent:@"all"];
     
     [[[NSURLSession sharedSession]dataTaskWithURL:breedURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         //handle error
@@ -51,7 +51,7 @@ static NSString * const baseURLString = @"https://dog.ceo/api";
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
         
         //check to see that you got a jsonDictionary back
-        if (!jsonDictionary|| ![jsonDictionary isKindOfClass:[NSDictionary class]]){
+        if (!jsonDictionary || ![jsonDictionary isKindOfClass:[NSDictionary class]]){
             NSLog(@"Error fetching json dictionary %@", error);
             completion(nil);
             return;
